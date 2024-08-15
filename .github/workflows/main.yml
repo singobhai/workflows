@@ -1,6 +1,7 @@
 name: Scheduled Test every 5 min
 
 on:
+  workflow_dispatch:
   schedule:
       - cron: '*/5 * * * *'  # Runs at 7:30 PM UTC every day
 

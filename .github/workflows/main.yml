@@ -1,9 +1,9 @@
-name: Scheduled Test every 5 min
+name: Scheduled Test every 10 min
 
 on:
   workflow_dispatch:
   schedule:
-      - cron: '*/5 * * * *'  # Runs at 7:30 PM UTC every day
+      - cron: '*/10 * * * *'  # Runs at 7:30 PM UTC every day
 
 jobs:
    build:

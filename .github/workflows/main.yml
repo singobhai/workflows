@@ -1,4 +1,4 @@
-name: Scheduled Test
+name: Scheduled Test every 5 min
 
 on:
   schedule:

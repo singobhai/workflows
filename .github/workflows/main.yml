@@ -1,13 +1,13 @@
-name: Scheduled Test every 10 min
+# name: Scheduled Test every 10 min
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '*/10 * * * *'  # Runs at 7:30 PM UTC every day
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '*/10 * * * *'  # Runs at 7:30 PM UTC every day
 
-jobs:
-   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Current Date and Time
-        run: date -u
+# jobs:
+#    build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Print Current Date and Time
+#         run: date -u
